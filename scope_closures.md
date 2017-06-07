@@ -1,29 +1,17 @@
 # You Don't Know JS: Scope & Closures
 
-<img src="cover.jpg" width="300">
-
------
-
-**[Purchase digital/print copy from O'Reilly](http://shop.oreilly.com/product/0636920026327.do)**
-
------
-
-[Table of Contents](toc.md)
-
-* [Foreword](https://shanehudson.net/2014/06/03/foreword-dont-know-js/) (by [Shane Hudson](https://github.com/shanehudson))
-* [Preface](../preface.md)
-* [Chapter 1: What is Scope?](ch1.md)
-* [Chapter 2: Lexical Scope](ch2.md)
-* [Chapter 3: Function vs. Block Scope](ch3.md)
-* [Chapter 4: Hoisting](ch4.md)
-* [Chapter 5: Scope Closures](ch5.md)
-* [Appendix A: Dynamic Scope](apA.md)
-* [Appendix B: Polyfilling Block Scope](apB.md)
-* [Appendix C: Lexical-this](apC.md)
-* [Appendix D: Thank You's!](apD.md)
+Table of Contents
 
 
-# You Don't Know JS: Scope & Closures
+* Chapter 1: What is Scope?
+* Chapter 2: Lexical Scope
+* Chapter 3: Function vs. Block Scope
+* Chapter 4: Hoisting
+* Appendix A: Dynamic Scope
+* Appendix B: Polyfilling Block Scope
+* Appendix C: Lexical-this
+
+
 # Chapter 1: What is Scope?
 
 One of the most fundamental paradigms of nearly all programming languages is the ability to store values in variables, and later retrieve or modify those values. In fact, the ability to store values and pull values out of variables is what gives a program *state*.
@@ -259,7 +247,7 @@ The simple rules for traversing nested *Scope*: *Engine* starts at the currently
 
 To visualize the process of nested *Scope* resolution, I want you to think of this tall building.
 
-<img src="fig1.png" width="250">
+<img src="2fig1.png" width="250">
 
 The building represents our program's nested *Scope* rule set. The first floor of the building represents your currently executing *Scope*, wherever you are. The top level of the building is the global *Scope*.
 
@@ -335,7 +323,6 @@ var c = foo( 2 );
 [^note-strictmode]: MDN: [Strict Mode](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions_and_function_scope/Strict_mode)
 
 
-# You Don't Know JS: Scope & Closures
 # Chapter 2: Lexical Scope
 
 In Chapter 1, we defined "scope" as the set of rules that govern how the *Engine* can look up a variable by its identifier name and find it, either in the current *Scope*, or in any of the *Nested Scopes* it's contained within.
@@ -373,7 +360,7 @@ foo( 2 ); // 2 4 12
 
 There are three nested scopes inherent in this code example. It may be helpful to think about these scopes as bubbles inside of each other.
 
-<img src="fig2.png" width="500">
+<img src="2fig2.png" width="500">
 
 **Bubble 1** encompasses the global scope, and has just one identifier in it: `foo`.
 
@@ -560,7 +547,6 @@ Two mechanisms in JavaScript can "cheat" lexical scope: `eval(..)` and `with`. T
 The downside to these mechanisms is that it defeats the *Engine*'s ability to perform compile-time optimizations regarding scope look-up, because the *Engine* has to assume pessimistically that such optimizations will be invalid. Code *will* run slower as a result of using either feature. **Don't use them.**
 
 
-# You Don't Know JS: Scope & Closures
 # Chapter 3: Function vs. Block Scope
 
 As we explored in Chapter 2, scope consists of a series of "bubbles" that each act as a container or bucket, in which identifiers (variables, functions) are declared. These bubbles nest neatly inside each other, and this nesting is defined at author-time.
@@ -1173,7 +1159,6 @@ Though some seem to believe so, block scope should not be taken as an outright r
 [^note-leastprivilege]: [Principle of Least Privilege](http://en.wikipedia.org/wiki/Principle_of_least_privilege)
 
 
-# You Don't Know JS: Scope & Closures
 # Chapter 4: Hoisting
 
 By now, you should be fairly comfortable with the idea of scope, and how variables are attached to different levels of scope depending on where and how they are declared. Both function scope and block scope behave by the same rules in this regard: any variable declared within a scope is attached to that scope.
@@ -1396,7 +1381,6 @@ Declarations themselves are hoisted, but assignments, even assignments of functi
 Be careful about duplicate declarations, especially mixed between normal var declarations and function declarations -- peril awaits if you do!
 
 
-# You Don't Know JS: Scope & Closures
 # Chapter 5: Scope Closure
 
 We arrive at this point with hopefully a very healthy, solid understanding of how scope works.
@@ -1992,3 +1976,298 @@ Closures can trip us up, for instance with loops, if we're not careful to recogn
 Modules require two key characteristics: 1) an outer wrapping function being invoked, to create the enclosing scope 2) the return value of the wrapping function must include reference to at least one inner function that then has closure over the private inner scope of the wrapper.
 
 Now we can see closures all around our existing code, and we have the ability to recognize and leverage them to our own benefit!
+
+# Appendix A: Dynamic Scope
+
+In Chapter 2, we talked about "Dynamic Scope" as a contrast to the "Lexical Scope" model, which is how scope works in JavaScript (and in fact, most other languages).
+
+We will briefly examine dynamic scope, to hammer home the contrast. But, more importantly, dynamic scope actually is a near cousin to another mechanism (`this`) in JavaScript, which we covered in the "*this & Object Prototypes*" title of this book series.
+
+As we saw in Chapter 2, lexical scope is the set of rules about how the *Engine* can look-up a variable and where it will find it. The key characteristic of lexical scope is that it is defined at author-time, when the code is written (assuming you don't cheat with `eval()` or `with`).
+
+Dynamic scope seems to imply, and for good reason, that there's a model whereby scope can be determined dynamically at runtime, rather than statically at author-time. That is in fact the case. Let's illustrate via code:
+
+```js
+function foo() {
+	console.log( a ); // 2
+}
+
+function bar() {
+	var a = 3;
+	foo();
+}
+
+var a = 2;
+
+bar();
+```
+
+Lexical scope holds that the RHS reference to `a` in `foo()` will be resolved to the global variable `a`, which will result in value `2` being output.
+
+Dynamic scope, by contrast, doesn't concern itself with how and where functions and scopes are declared, but rather **where they are called from**. In other words, the scope chain is based on the call-stack, not the nesting of scopes in code.
+
+So, if JavaScript had dynamic scope, when `foo()` is executed, **theoretically** the code below would instead result in `3` as the output.
+
+```js
+function foo() {
+	console.log( a ); // 3  (not 2!)
+}
+
+function bar() {
+	var a = 3;
+	foo();
+}
+
+var a = 2;
+
+bar();
+```
+
+How can this be? Because when `foo()` cannot resolve the variable reference for `a`, instead of stepping up the nested (lexical) scope chain, it walks up the call-stack, to find where `foo()` was *called from*. Since `foo()` was called from `bar()`, it checks the variables in scope for `bar()`, and finds an `a` there with value `3`.
+
+Strange? You're probably thinking so, at the moment.
+
+But that's just because you've probably only ever worked on (or at least deeply considered) code which is lexically scoped. So dynamic scoping seems foreign. If you had only ever written code in a dynamically scoped language, it would seem natural, and lexical scope would be the odd-ball.
+
+To be clear, JavaScript **does not, in fact, have dynamic scope**. It has lexical scope. Plain and simple. But the `this` mechanism is kind of like dynamic scope.
+
+The key contrast: **lexical scope is write-time, whereas dynamic scope (and `this`!) are runtime**. Lexical scope cares *where a function was declared*, but dynamic scope cares where a function was *called from*.
+
+Finally: `this` cares *how a function was called*, which shows how closely related the `this` mechanism is to the idea of dynamic scoping. To dig more into `this`, read the title "*this & Object Prototypes*".
+
+# Appendix B: Polyfilling Block Scope
+
+In Chapter 3, we explored Block Scope. We saw that `with` and the `catch` clause are both tiny examples of block scope that have existed in JavaScript since at least the introduction of ES3.
+
+But it's ES6's introduction of `let` that finally gives full, unfettered block-scoping capability to our code. There are many exciting things, both functionally and code-stylistically, that block scope will enable.
+
+But what if we wanted to use block scope in pre-ES6 environments?
+
+Consider this code:
+
+```js
+{
+	let a = 2;
+	console.log( a ); // 2
+}
+
+console.log( a ); // ReferenceError
+```
+
+This will work great in ES6 environments. But can we do so pre-ES6? `catch` is the answer.
+
+```js
+try{throw 2}catch(a){
+	console.log( a ); // 2
+}
+
+console.log( a ); // ReferenceError
+```
+
+Whoa! That's some ugly, weird looking code. We see a `try/catch` that appears to forcibly throw an error, but the "error" it throws is just a value `2`, and then the variable declaration that receives it is in the `catch(a)` clause. Mind: blown.
+
+That's right, the `catch` clause has block-scoping to it, which means it can be used as a polyfill for block scope in pre-ES6 environments.
+
+"But...", you say. "...no one wants to write ugly code like that!" That's true. No one writes (some of) the code output by the CoffeeScript compiler, either. That's not the point.
+
+The point is that tools can transpile ES6 code to work in pre-ES6 environments. You can write code using block-scoping, and benefit from such functionality, and let a build-step tool take care of producing code that will actually *work* when deployed.
+
+This is actually the preferred migration path for all (ahem, most) of ES6: to use a code transpiler to take ES6 code and produce ES5-compatible code during the transition from pre-ES6 to ES6.
+
+## Traceur
+
+Google maintains a project called "Traceur" [^note-traceur], which is exactly tasked with transpiling ES6 features into pre-ES6 (mostly ES5, but not all!) for general usage. The TC39 committee relies on this tool (and others) to test out the semantics of the features they specify.
+
+What does Traceur produce from our snippet? You guessed it!
+
+```js
+{
+	try {
+		throw undefined;
+	} catch (a) {
+		a = 2;
+		console.log( a );
+	}
+}
+
+console.log( a );
+```
+
+So, with the use of such tools, we can start taking advantage of block scope regardless of if we are targeting ES6 or not, because `try/catch` has been around (and worked this way) from ES3 days.
+
+## Implicit vs. Explicit Blocks
+
+In Chapter 3, we identified some potential pitfalls to code maintainability/refactorability when we introduce block-scoping. Is there another way to take advantage of block scope but to reduce this downside?
+
+Consider this alternate form of `let`, called the "let block" or "let statement" (contrasted with "let declarations" from before).
+
+```js
+let (a = 2) {
+	console.log( a ); // 2
+}
+
+console.log( a ); // ReferenceError
+```
+
+Instead of implicitly hijacking an existing block, the let-statement creates an explicit block for its scope binding. Not only does the explicit block stand out more, and perhaps fare more robustly in code refactoring, it produces somewhat cleaner code by, grammatically, forcing all the declarations to the top of the block. This makes it easier to look at any block and know what's scoped to it and not.
+
+As a pattern, it mirrors the approach many people take in function-scoping when they manually move/hoist all their `var` declarations to the top of the function. The let-statement puts them there at the top of the block by intent, and if you don't use `let` declarations strewn throughout, your block-scoping declarations are somewhat easier to identify and maintain.
+
+But, there's a problem. The let-statement form is not included in ES6. Neither does the official Traceur compiler accept that form of code.
+
+We have two options. We can format using ES6-valid syntax and a little sprinkle of code discipline:
+
+```js
+/*let*/ { let a = 2;
+	console.log( a );
+}
+
+console.log( a ); // ReferenceError
+```
+
+But, tools are meant to solve our problems. So the other option is to write explicit let statement blocks, and let a tool convert them to valid, working code.
+
+So, I built a tool called "let-er" [^note-let_er] to address just this issue. *let-er* is a build-step code transpiler, but its only task is to find let-statement forms and transpile them. It will leave alone any of the rest of your code, including any let-declarations. You can safely use *let-er* as the first ES6 transpiler step, and then pass your code through something like Traceur if necessary.
+
+Moreover, *let-er* has a configuration flag `--es6`, which when turned on (off by default), changes the kind of code produced. Instead of the `try/catch` ES3 polyfill hack, *let-er* would take our snippet and produce the fully ES6-compliant, non-hacky:
+
+```js
+{
+	let a = 2;
+	console.log( a );
+}
+
+console.log( a ); // ReferenceError
+```
+
+So, you can start using *let-er* right away, and target all pre-ES6 environments, and when you only care about ES6, you can add the flag and instantly target only ES6.
+
+And most importantly, **you can use the more preferable and more explicit let-statement form** even though it is not an official part of any ES version (yet).
+
+## Performance
+
+Let me add one last quick note on the performance of `try/catch`, and/or to address the question, "why not just use an IIFE to create the scope?"
+
+Firstly, the performance of `try/catch` *is* slower, but there's no reasonable assumption that it *has* to be that way, or even that it *always will be* that way. Since the official TC39-approved ES6 transpiler uses `try/catch`, the Traceur team has asked Chrome to improve the performance of `try/catch`, and they are obviously motivated to do so.
+
+Secondly, IIFE is not a fair apples-to-apples comparison with `try/catch`, because a function wrapped around any arbitrary code changes the meaning, inside of that code, of `this`, `return`, `break`, and `continue`. IIFE is not a suitable general substitute. It could only be used manually in certain cases.
+
+The question really becomes: do you want block-scoping, or not. If you do, these tools provide you that option. If not, keep using `var` and go on about your coding!
+
+[^note-traceur]: [Google Traceur](http://traceur-compiler.googlecode.com/git/demo/repl.html)
+
+[^note-let_er]\: [let-er](https://github.com/getify/let-er)
+
+# Appendix C: Lexical-this
+
+Though this title does not address the `this` mechanism in any detail, there's one ES6 topic which relates `this` to lexical scope in an important way, which we will quickly examine.
+
+ES6 adds a special syntactic form of function declaration called the "arrow function". It looks like this:
+
+```js
+var foo = a => {
+	console.log( a );
+};
+
+foo( 2 ); // 2
+```
+
+The so-called "fat arrow" is often mentioned as a short-hand for the *tediously verbose* (sarcasm) `function` keyword.
+
+But there's something much more important going on with arrow-functions that has nothing to do with saving keystrokes in your declaration.
+
+Briefly, this code suffers a problem:
+
+```js
+
+var obj = {
+	id: "awesome",
+	cool: function coolFn() {
+		console.log( this.id );
+	}
+};
+
+var id = "not awesome";
+
+obj.cool(); // awesome
+
+setTimeout( obj.cool, 100 ); // not awesome
+```
+
+The problem is the loss of `this` binding on the `cool()` function. There are various ways to address that problem, but one often-repeated solution is `var self = this;`.
+
+That might look like:
+
+```js
+var obj = {
+	count: 0,
+	cool: function coolFn() {
+		var self = this;
+
+		if (self.count < 1) {
+			setTimeout( function timer(){
+				self.count++;
+				console.log( "awesome?" );
+			}, 100 );
+		}
+	}
+};
+
+obj.cool(); // awesome?
+```
+
+Without getting too much into the weeds here, the `var self = this` "solution" just dispenses with the whole problem of understanding and properly using `this` binding, and instead falls back to something we're perhaps more comfortable with: lexical scope. `self` becomes just an identifier that can be resolved via lexical scope and closure, and cares not what happened to the `this` binding along the way.
+
+People don't like writing verbose stuff, especially when they do it over and over again. So, a motivation of ES6 is to help alleviate these scenarios, and indeed, *fix* common idiom problems, such as this one.
+
+The ES6 solution, the arrow-function, introduces a behavior called "lexical this".
+
+```js
+var obj = {
+	count: 0,
+	cool: function coolFn() {
+		if (this.count < 1) {
+			setTimeout( () => { // arrow-function ftw?
+				this.count++;
+				console.log( "awesome?" );
+			}, 100 );
+		}
+	}
+};
+
+obj.cool(); // awesome?
+```
+
+The short explanation is that arrow-functions do not behave at all like normal functions when it comes to their `this` binding. They discard all the normal rules for `this` binding, and instead take on the `this` value of their immediate lexical enclosing scope, whatever it is.
+
+So, in that snippet, the arrow-function doesn't get its `this` unbound in some unpredictable way, it just "inherits" the `this` binding of the `cool()` function (which is correct if we invoke it as shown!).
+
+While this makes for shorter code, my perspective is that arrow-functions are really just codifying into the language syntax a common *mistake* of developers, which is to confuse and conflate "this binding" rules with "lexical scope" rules.
+
+Put another way: why go to the trouble and verbosity of using the `this` style coding paradigm, only to cut it off at the knees by mixing it with lexical references. It seems natural to embrace one approach or the other for any given piece of code, and not mix them in the same piece of code.
+
+**Note:** one other detraction from arrow-functions is that they are anonymous, not named. See Chapter 3 for the reasons why anonymous functions are less desirable than named functions.
+
+A more appropriate approach, in my perspective, to this "problem", is to use and embrace the `this` mechanism correctly.
+
+```js
+var obj = {
+	count: 0,
+	cool: function coolFn() {
+		if (this.count < 1) {
+			setTimeout( function timer(){
+				this.count++; // `this` is safe because of `bind(..)`
+				console.log( "more awesome" );
+			}.bind( this ), 100 ); // look, `bind()`!
+		}
+	}
+};
+
+obj.cool(); // more awesome
+```
+
+Whether you prefer the new lexical-this behavior of arrow-functions, or you prefer the tried-and-true `bind()`, it's important to note that arrow-functions are **not** just about less typing of "function".
+
+They have an *intentional behavioral difference* that we should learn and understand, and if we so choose, leverage.
+
+Now that we fully understand lexical scoping (and closure!), understanding lexical-this should be a breeze!

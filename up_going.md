@@ -1,21 +1,12 @@
 # You Don't Know JS: Up & Going
 
-<img src="cover.jpg" width="300">
 
------
+Table of Contents
 
-**[Purchase digital/print copy from O'Reilly](http://shop.oreilly.com/product/0636920039303.do)**
+* Chapter 1: Into Programming
+* Chapter 2: Into JavaScript
+* Chapter 3: Into YDKJS
 
------
-
-[Table of Contents](toc.md)
-
-* [Foreword](foreword.md) (by [Jenn Lukas](http://jennlukas.com))
-* [Preface](../preface.md)
-* [Chapter 1: Into Programming](ch1.md)
-* [Chapter 2: Into JavaScript](ch2.md)
-* [Chapter 3: Into YDKJS](ch3.md)
-* [Appendix A: Thank You's!](apA.md)
 
 
 # Chapter 1: Into Programming
@@ -127,7 +118,7 @@ console.log( b );
 
 Typing the preceding code into the console in Chrome should produce something like the following:
 
-<img src="fig1.png" width="500">
+<img src="./1/fig1.png" width="500">
 
 Go on, try it. The best way to learn programming is to start coding!
 
@@ -169,11 +160,11 @@ As you may have guessed, the message you pass to `prompt(..)` -- in this case, `
 
 This should look similar to the following:
 
-<img src="fig2.png" width="500">
+<img src="./1/fig2.png" width="500">
 
 Once you submit the input text by clicking "OK," you'll observe that the value you typed is stored in the `age` variable, which we then *output* with `console.log(..)`:
 
-<img src="fig3.png" width="500">
+<img src="./1/fig3.png" width="500">
 
 To keep things simple while we're learning basic programming concepts, the examples in this book will not require input. But now that you've seen how to use `prompt(..)`, if you want to challenge yourself you can try to use input in your explorations of the examples.
 
@@ -972,11 +963,11 @@ As you may have guessed, the message you pass to `prompt(..)` -- in this case, `
 
 This should look similar to the following:
 
-<img src="fig2.png" width="500">
+<img src="./1/fig2.png" width="500">
 
 Once you submit the input text by clicking "OK," you'll observe that the value you typed is stored in the `age` variable, which we then *output* with `console.log(..)`:
 
-<img src="fig3.png" width="500">
+<img src="./1/fig3.png" width="500">
 
 To keep things simple while we're learning basic programming concepts, the examples in this book will not require input. But now that you've seen how to use `prompt(..)`, if you want to challenge yourself you can try to use input in your explorations of the examples.
 

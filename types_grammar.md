@@ -1,26 +1,16 @@
 # You Don't Know JS: Types & Grammar
 
-<img src="cover.jpg" width="300">
 
------
+[Table of Contents
 
-**[Purchase digital/print copy from O'Reilly](http://shop.oreilly.com/product/0636920033745.do)**
+* Chapter 1: Types
+* Chapter 2: Values
+* Chapter 3: Natives
+* Chapter 4: Coercion
+* Chapter 5: Grammar
+* Appendix A: Mixed Environment JavaScript
 
------
 
-[Table of Contents](toc.md)
-
-* [Foreword](foreword.md) (by [David Walsh](http://davidwalsh.name))
-* [Preface](../preface.md)
-* [Chapter 1: Types](ch1.md)
-* [Chapter 2: Values](ch2.md)
-* [Chapter 3: Natives](ch3.md)
-* [Chapter 4: Coercion](ch4.md)
-* [Chapter 5: Grammar](ch5.md)
-* [Appendix A: Mixed Environment JavaScript](apA.md)
-* [Appendix B: Thank You's!](apB.md)
-
-# You Don't Know JS: Types & Grammar
 # Chapter 1: Types
 
 Most developers would say that a dynamic language (like JS) does not have *types*. Let's see what the ES5.1 specification (http://www.ecma-international.org/ecma-262/5.1/) has to say on the topic:
@@ -321,7 +311,7 @@ JavaScript unfortunately kind of conflates these two terms, not only in its erro
 
 However, the safety guard (preventing an error) on `typeof` when used against an undeclared variable can be helpful in certain cases.
 
-# You Don't Know JS: Types & Grammar
+ 
 # Chapter 2: Values
 
 `array`s, `string`s, and `number`s are the most basic building-blocks of any program, but JavaScript has some unique characteristics with these types that may either delight or confound you.
@@ -1307,7 +1297,7 @@ The `null` type has just one value: `null`, and likewise the `undefined` type ha
 
 Simple scalar primitives (`string`s, `number`s, etc.) are assigned/passed by value-copy, but compound values (`object`s, etc.) are assigned/passed by reference-copy. References are not like references/pointers in other languages -- they're never pointed at other variables/references, only at the underlying values.
 
-# You Don't Know JS: Types & Grammar
+ 
 # Chapter 3: Natives
 
 Several times in Chapters 1 and 2, we alluded to various built-ins, usually called "natives," like `String` and `Number`. Let's examine those in detail now.
@@ -1796,7 +1786,7 @@ JavaScript provides object wrappers around primitive values, known as natives (`
 If you have a simple scalar primitive value like `"abc"` and you access its `length` property or some `String.prototype` method, JS automatically "boxes" the value (wraps it in its respective object wrapper) so that the property/method accesses can be fulfilled.
 
 
-# You Don't Know JS: Types & Grammar
+ 
 # Chapter 4: Coercion
 
 Now that we much more fully understand JavaScript's types and values, we turn our attention to a very controversial topic: coercion.
@@ -3611,7 +3601,7 @@ Be a responsible and mature developer. Learn how to use the power of coercion (b
 
 Here's a handy table made by Alex Dorey (@dorey on GitHub) to visualize a variety of comparisons:
 
-<img src="fig1.png" width="600">
+<img src="3fig1.png" width="600">
 
 Source: https://github.com/dorey/JavaScript-Equality-Table
 
@@ -3717,7 +3707,7 @@ Coercion gets a bad rap, but it's actually quite useful in many cases. An import
 Especially for *implicit*, coercion must be used responsibly and consciously. Know why you're writing the code you're writing, and how it works. Strive to write code that others will easily be able to learn from and understand as well.
 
 
-# You Don't Know JS: Types & Grammar
+ 
 # Chapter 5: Grammar
 
 The last major topic we want to tackle is how JavaScript's language syntax works (aka its grammar). You may think you know how to write JS, but there's an awful lot of nuance to various parts of the language grammar that lead to confusion and misconception, so we want to dive into those parts and clear some things up.
@@ -5106,7 +5096,7 @@ The `finally` clause attached to a `try` (or `try..catch`) offers some very inte
 The `switch` offers some nice shorthand for `if..else if..` statements, but beware of many common simplifying assumptions about its behavior. There are several quirks that can trip you up if you're not careful, but there's also some neat hidden tricks that `switch` has up its sleeve!
 
 
-# You Don't Know JS: Types & Grammar
+ 
 # Appendix A: Mixed Environment JavaScript
 
 Beyond the core language mechanics we've fully explored in this book, there are several ways that your JS code can behave differently when it runs in the real world. If JS was executing purely inside an engine, it'd be entirely predictable based on nothing but the black-and-white of the spec. But JS pretty much always runs in the context of a hosting environment, which exposes your code to some degree of unpredictability.

@@ -1,29 +1,16 @@
 # You Don't Know JS: ES6 & Beyond
 
-<img src="cover.jpg" width="300">
-
------
-
-**[Purchase digital/print copy from O'Reilly](http://shop.oreilly.com/product/0636920033769.do)**
-
------
-
-[Table of Contents](toc.md)
-
-* [Foreword](foreword.md) (by [Rick Waldron](http://bocoup.com/weblog/author/rick-waldron/))
-* [Preface](../preface.md)
-* [Chapter 1: ES? Now & Future](ch1.md)
-* [Chapter 2: Syntax](ch2.md)
-* [Chapter 3: Organization](ch3.md)
-* [Chapter 4: Async Flow Control](ch4.md)
-* [Chapter 5: Collections](ch5.md)
-* [Chapter 6: API Additions](ch6.md)
-* [Chapter 7: Meta Programming](ch7.md)
-* [Chapter 8: Beyond ES6](ch8.md)
-* [Appendix A: Thank You's!](apA.md)
+* Chapter 1: ES? Now & Future
+* Chapter 2: Syntax
+* Chapter 3: Organization
+* Chapter 4: Async Flow Control
+* Chapter 5: Collections
+* Chapter 6: API Additions
+* Chapter 7: Meta Programming
+* Chapter 8: Beyond ES6
 
 
-# You Don't Know JS: ES6 & Beyond
+
 # Chapter 1: ES? Now & Future
 
 Before you dive into this book, you should have a solid working proficiency over JavaScript up to the most recent standard (at the time of this writing), which is commonly called *ES5* (technically ES 5.1). Here, we plan to talk squarely about the upcoming *ES6*, as well as cast our vision beyond to understand how JS will evolve moving forward.
@@ -143,7 +130,7 @@ Whatever labels that future JavaScript adopts, it's going to move a lot quicker 
 
 If there's any narrative important to understand about the new reality for JavaScript, it's that all JS developers are strongly implored to move from the trailing edge of the curve to the leading edge. And learning ES6 is where that all starts!
 
-# You Don't Know JS: ES6 & Beyond
+
 # Chapter 2: Syntax
 
 If you've been writing JS for any length of time, odds are the syntax is pretty familiar to you. There are certainly many quirks, but overall it's a fairly reasonable and straightforward syntax that draws many similarities from other languages.
@@ -2115,7 +2102,7 @@ Don't believe any hype that `=>` is primarily, or even mostly, about fewer keyst
 
 If you prefer a visual decision chart for how/why to pick an arrow function:
 
-<img src="fig1.png">
+<img src="4fig1.png">
 
 ## `for..of` Loops
 
@@ -2966,7 +2953,7 @@ While features like `=>` arrow functions appear to also be all about shorter and
 
 Expanded Unicode support, new tricks for regular expressions, and even a new primitive `symbol` type round out the syntactic evolution of ES6.
 
-# You Don't Know JS: ES6 & Beyond
+
 # Chapter 3: Organization
 
 It's one thing to write JS code, but it's another to properly organize it. Utilizing common patterns for organization and reuse goes a long way to improving the readability and understandability of your code. Remember: code is at least as much about communicating to other developers as it is about feeding the computer instructions.
@@ -5014,7 +5001,7 @@ ES6 introduces several new features that aid in code organization:
 * Classes provide cleaner syntax around prototype-based coding. The addition of `super` also solves tricky issues with relative references in the `[[Prototype]]` chain.
 
 These new tools should be your first stop when trying to improve the architecture of your JS projects by embracing ES6.
-# You Don't Know JS: ES6 & Beyond
+
 # Chapter 4: Async Flow Control
 
 It's no secret if you've written any significant amount of JavaScript that asynchronous programming is a required skill. The primary mechanism for managing asynchrony has been the function callback.
@@ -5395,7 +5382,7 @@ Thankfully, ES6 adds Promises to address one of the major shortcomings of callba
 But it's the combination of Promises with generators that fully realizes the benefits of rearranging our async flow control code to de-emphasize and abstract away that ugly callback soup (aka "hell").
 
 Right now, we can manage these interactions with the aide of various async libraries' runners, but JavaScript is eventually going to support this interaction pattern with dedicated syntax alone!
-# You Don't Know JS: ES6 & Beyond
+
 # Chapter 5: Collections
 
 Structured collection and access to data is a critical component of just about any JS program. From the beginning of the language up to this point, the array and the object have been our primary mechanism for creating data structures. Of course, many higher-level data structures have been built on top of these, as user-land libraries.
@@ -5940,7 +5927,7 @@ TypedArrays provide "view"s of binary data buffers that align with various integ
 Maps are key-value pairs where the key can be an object instead of just a string/primitive. Sets are unique lists of values (of any type).
 
 WeakMaps are maps where the key (object) is weakly held, so that GC is free to collect the entry if it's the last reference to an object. WeakSets are sets where the value is weakly held, again so that GC can remove the entry if it's the last reference to that object.
-# You Don't Know JS: ES6 & Beyond
+
 # Chapter 6: API Additions
 
 From conversions of values to mathematic calculations, ES6 adds many static properties and methods to various built-in natives and objects to help with common tasks. In addition, instances of some of the natives have new capabilities via various new prototype methods.
@@ -6740,7 +6727,7 @@ ES6 adds many extra API helpers on the various built-in native objects:
 
 Most of these additions can be polyfilled (see ES6 Shim), and were inspired by utilities in common JS libraries/frameworks.
 
-# You Don't Know JS: ES6 & Beyond
+
 # Chapter 7: Meta Programming
 
 Meta programming is programming where the operation targets the behavior of the program itself. In other words, it's programming the programming of your program. Yeah, a mouthful, huh?
@@ -8025,7 +8012,7 @@ Feature testing, even for subtle semantic behaviors like Tail Call Optimization,
 
 Should you meta program? My advice is: first focus on learning how the core mechanics of the language really work. But once you fully know what JS itself can do, it's time to start leveraging these powerful meta programming capabilities to push the language further!
 
-# You Don't Know JS: ES6 & Beyond
+
 # Chapter 8: Beyond ES6
 
 At the time of this writing, the final draft of ES6 (*ECMAScript 2015*) is shortly headed toward its final official vote of approval by ECMA. But even as ES6 is being finalized, the TC39 committee is already hard at work at on features for ES7/2016 and beyond.
